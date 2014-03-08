@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zitec.workshop2preps"
+    android:versionCode="2"
+    android:versionName="3" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- Pentru conumare API -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Pentru a ne asigura ca utilizatorul are acces la internet in momentul in care doreste sa descarce o revista -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- Pentru a stoca imagini -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- Pentru a verifica starea datelor din applicatie -->
+
+    <application
+        android:allowBackup="true"
+        android:debuggable="true"
+        android:label="@string/app_name" >
+        <activity
+            android:name="com.zitec.workshop2preps.SplashScreenActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.zitec.workshop2preps.user.activities.LoginActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar" />
+        <activity
+            android:name="com.zitec.workshop2preps.workshopz.activities.WorkshopzActivity"
+            class="com.zitec.workshop2preps.workshopz.activities.WorkshopzActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.DeviceDefault.Light.DarkActionBar" >
+        </activity>
+    </application>
+
+</manifest>
