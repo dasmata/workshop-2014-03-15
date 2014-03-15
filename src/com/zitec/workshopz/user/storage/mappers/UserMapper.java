@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 import com.zitec.workshopz.base.BaseEntity;
 import com.zitec.workshopz.base.BaseStorageMapper;
-import com.zitec.workshopz.user.entities.User;
 
 
 public class UserMapper extends BaseStorageMapper{
