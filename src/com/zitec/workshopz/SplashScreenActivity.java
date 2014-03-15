@@ -5,6 +5,7 @@ import android.os.UserManager;
 import com.zitec.workshopz.R;
 import com.zitec.workshopz.base.BaseActivity;
 import com.zitec.workshopz.base.BaseView;
+import com.zitec.workshopz.user.storage.mappers.UserMapper;
 
 
 public class SplashScreenActivity extends BaseActivity {
@@ -23,6 +24,7 @@ public class SplashScreenActivity extends BaseActivity {
 			return;
 		}
 		UserMapper mapper = new UserMapper();
+		
 		
 	}
 	
