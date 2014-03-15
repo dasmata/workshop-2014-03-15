@@ -33,6 +33,7 @@
                android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar"></activity>
         <activity
             android:name="com.zitec.workshopz.workshopz.activities.WorkshopzActivity"
+            class="com.zitec.workshopz.workshopz.activities.WorkshopzActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.DeviceDefault.Light.DarkActionBar" >
         </activity>

@@ -9,11 +9,11 @@
         android:id="@+id/listFragment"
         android:layout_width="200dp"
         android:layout_height="match_parent"
-        class="com.zitec.workshop2preps.workshopz.fragments.WorkshopzList"/>
+        class="com.zitec.workshopz.workshopz.fragments.WorkshopzList"/>
     <fragment 
         android:id="@+id/detailsFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        class="com.zitec.workshop2preps.workshopz.fragments.WorkshopDetail"/>
+        class="com.zitec.workshopz.workshopz.fragments.WorkshopDetail"/>
 
 </LinearLayout>
