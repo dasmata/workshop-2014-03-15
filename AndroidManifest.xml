@@ -18,6 +18,7 @@
         <activity
             android:name="com.zitec.workshopz.SplashScreenActivity"
             android:label="@string/app_name"
+            android:noHistory="true"
             android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,6 +26,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+               android:name="com.zitec.workshopz.user.activities.LoginActivity"
+               android:label="@string/app_name"
+               android:noHistory="true"
+               android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar"></activity>
     </application>
 
 </manifest>

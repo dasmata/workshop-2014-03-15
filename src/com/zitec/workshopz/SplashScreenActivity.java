@@ -36,21 +36,20 @@ public class SplashScreenActivity extends BaseActivity {
 			@Override
 			public void onSuccess(ArrayList<BaseEntity> obj) {
 				if(obj.size() > 0){
-					this.loadWorkshops();
+					SplashScreenActivity.this.loadWorkshops();
 				} else {
-					System.out.println("not auth");
-					// not auth
+					SplashScreenActivity.this.initLoginActivity();
+					SplashScreenActivity.this.finish();
 				}
 			}
 			
 			@Override
 			public void onError(Error err) {
-				// not auth
-				System.out.println("error");
+				SplashScreenActivity.this.initLoginActivity();
 			}
 		});
 		HashMap<String, String> params = new HashMap<String, String>();
-		params.put("current_identity", "1");
+		params.put("current_identity", "true");
 		mapper.find(params);
 	}
 	
