@@ -2,8 +2,6 @@ package com.zitec.workshopz.user.storage.mappers;
 
 import java.util.HashMap;
 
-import com.zitec.workshopz.base.EntityResponseListener;
-import com.zitec.workshopz.base.storage.adapters.BaseStorageAdapter;
 import com.zitec.workshopz.base.storage.mapper.BaseMapper;
 import com.zitec.workshopz.user.entities.User;
 

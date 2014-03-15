@@ -26,7 +26,7 @@ public abstract class BaseStorageAdapter {
 	}
 	
 	
-	public void find(HashMap<String, String> params){
+	public void find(HashMap<String, Object> params){
 		
 	}
 	

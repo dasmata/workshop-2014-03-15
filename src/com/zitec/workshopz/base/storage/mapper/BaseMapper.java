@@ -2,7 +2,6 @@ package com.zitec.workshopz.base.storage.mapper;
 
 import java.util.HashMap;
 
-import com.zitec.workshopz.base.BaseEntity;
 import com.zitec.workshopz.base.EntityResponseListener;
 import com.zitec.workshopz.base.storage.adapters.BaseStorageAdapter;
 
@@ -18,7 +17,7 @@ public abstract class BaseMapper<T> {
 		this.listener = listener;
 	}
 	
-	public void find(HashMap<String, String> params){
+	public void find(HashMap<String, Object> params){
 		this.adapter.find(params);
 	}
 	

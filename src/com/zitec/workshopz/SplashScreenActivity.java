@@ -24,7 +24,8 @@ public class SplashScreenActivity extends BaseActivity {
 			return;
 		}
 		UserMapper mapper = new UserMapper();
-		
+		UserDbAdapter adapter= new UserDbAdapter(this);
+		mapper.setAdapter(adapter);
 		
 	}
 	
