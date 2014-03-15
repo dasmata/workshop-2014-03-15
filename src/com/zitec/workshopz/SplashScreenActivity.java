@@ -56,4 +56,5 @@ public class SplashScreenActivity extends BaseActivity {
 	public void loadWorkshops(){
 		
 	}
+	
 }

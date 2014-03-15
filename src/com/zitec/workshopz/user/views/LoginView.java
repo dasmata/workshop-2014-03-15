@@ -1,6 +1,8 @@
 package com.zitec.workshopz.user.views;
 
 
+import android.util.Log;
+import android.util.SparseArray;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,9 +21,14 @@ public class LoginView extends BaseView {
 	EditText username;
 	EditText password;
 	Button submit;
+	SparseArray<String> errors;
+
 	
 	public LoginView(LoginActivity act){
 		this.act = act;
+		this.errors = new SparseArray<String>();
+		this.errors.put(R.id.username, this.act.getResources().getString(R.string.empty_username_error));
+		this.errors.put(R.id.password, this.act.getResources().getString(R.string.empty_password_error));
 	}
 	
 	@Override
@@ -44,13 +51,31 @@ public class LoginView extends BaseView {
 			
 			@Override
 			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-				// TODO Auto-generated method stub
+				if(event == null){
+					return false;
+				}
+				LoginView.this.submitLogin();
 				return false;
 			}
 		});
 	}
 
 	protected void submitLogin(){
-		
+		SparseArray<String> values = new SparseArray<String>();
+		values.append(R.id.username, this.username.getText().toString());
+		values.append(R.id.password, this.password.getText().toString());
+		if(this.act.validateLogin(values)){
+			this.act.login(values);
+		} else {
+			this.showErrors();
+		}
+	}
+	
+	public void showErrors(){
+		this.act.getErros();
+	}
+	
+	public String getEmptyError(int id){
+		return this.errors.get(id);
 	}
 }
