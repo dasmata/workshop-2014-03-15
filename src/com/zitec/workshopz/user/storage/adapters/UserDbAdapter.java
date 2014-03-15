@@ -13,7 +13,7 @@ public class UserDbAdapter extends BaseStorageAdapter{
 	}
 	
 	@Override
-	public void find(HashMap<String, Object> data){
+	public void find(HashMap<String, String> data){
 		
 	}
 }
