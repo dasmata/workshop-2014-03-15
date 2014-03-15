@@ -72,7 +72,11 @@ public class LoginView extends BaseView {
 	}
 	
 	public void showErrors(){
-		this.act.getErros();
+		SparseArray<String> errs = this.act.getErrors();
+		int nr = errs.size();
+		for(int i = 0; i < nr; i++){
+			((EditText)this.act.findViewById(errs.keyAt(i))).setError(errs.valueAt(i));
+		}
 	}
 	
 	public String getEmptyError(int id){
