@@ -34,7 +34,10 @@ public class UserDbAdapter extends BaseStorageAdapter{
 			sql += " and " + key + " = ?";
 			params.add(data.get(key));
 		}
-		Cursor crs = this.database.getWritableDatabase().rawQuery(sql, (String[])params.toArray());
+		Cursor crs = this.database.getWritableDatabase().rawQuery(
+				sql,
+				(String[])params.toArray(new String[params.size()])
+		);
 		this.mapper.onSuccess(this.getRows(crs));
 	}
 	
