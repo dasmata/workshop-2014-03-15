@@ -13,10 +13,11 @@ public class DbHelper extends SQLiteOpenHelper {
 	public static String sqlDir = "db";
 	public Context ctx;
 	public static String upgradePrefix = "upgrade-";
+	public static String database = "workshopz";
 
 	
-	public DbHelper(Context context, String name, CursorFactory factory, int version) {
-		super(context, name, factory, version);
+	public DbHelper(Context context, CursorFactory factory, int version) {
+		super(context, database, factory, version);
 		this.ctx = context;
 	}
 

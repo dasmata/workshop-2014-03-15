@@ -1,5 +1,6 @@
 package com.zitec.workshopz;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import android.os.Bundle;
 
@@ -42,7 +43,9 @@ public class SplashScreenActivity extends BaseActivity {
 				// TODO Auto-generated method stub
 			}
 		});
-		
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put("current_identity", "1");
+		mapper.find(params);
 	}
 	
 	public void loadWorkshops(){
