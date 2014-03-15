@@ -21,6 +21,8 @@ public class SplashScreenActivity extends BaseActivity {
 			this.loadWorkshops();
 			return;
 		}
+		
+		
 	}
 	
 	public void loadWorkshops(){
