@@ -48,6 +48,9 @@ public class DbHelper extends SQLiteOpenHelper {
 								(file.length()-upgradePrefix.length())
 						)
 				);
+				if(fileVersion > oldVersion && fileVersion <= newVersion){
+					this.runSql(file, db);
+				}
 			}
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
