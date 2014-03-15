@@ -1,11 +1,21 @@
 package com.zitec.workshopz.user.activities;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import android.os.Bundle;
 import android.util.SparseArray;
 
 import com.zitec.workshopz.R;
 import com.zitec.workshopz.base.BaseActivity;
+import com.zitec.workshopz.base.BaseEntity;
+import com.zitec.workshopz.base.EntityResponseListener;
+import com.zitec.workshopz.base.storage.Error;
 import com.zitec.workshopz.base.validators.NotEmpty;
+import com.zitec.workshopz.user.entities.User;
+import com.zitec.workshopz.user.storage.adapters.UserDbAdapter;
+import com.zitec.workshopz.user.storage.adapters.UserWSAdapter;
+import com.zitec.workshopz.user.storage.mappers.UserMapper;
 import com.zitec.workshopz.user.views.LoginView;
 
 public class LoginActivity extends BaseActivity {
@@ -41,6 +51,43 @@ public class LoginActivity extends BaseActivity {
 	}
 	
 	public void login(String username, String password){
+		final UserMapper mapper = new UserMapper();
+		mapper.setAdapter(new UserWSAdapter(this));
+		mapper.setListener(new EntityResponseListener() {
+			
+			@Override
+			public void onSuccess(ArrayList<BaseEntity> obj) {
+				if(obj.size() < 1){
+					LoginActivity.this.showGenericError(
+							LoginActivity.this,
+							new Error(LoginActivity.this.getResources().getString(R.string.network_error)));
+					return;
+				}
+				User usr = (User) obj.get(0);
+				BaseActivity.identity = usr;
+				mapper.setAdapter(new UserDbAdapter(LoginActivity.this));
+				usr.setCurrentIdentity("true");
+				mapper.save(usr);
+				LoginActivity.this.loadWorkshops();
+			}
+			
+			@Override
+			public void onError(Error err) {
+				LoginActivity.this.showGenericError(
+						LoginActivity.this,
+						err);
+			}
+		});
+		mapper.getEntity(username, password);
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 	}
 }

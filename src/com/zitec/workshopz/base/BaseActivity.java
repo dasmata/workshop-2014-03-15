@@ -38,4 +38,8 @@ public class BaseActivity extends FragmentActivity {
 		Intent i = new Intent(this, LoginActivity.class);
 		this.startActivity(i);
 	}
+	
+	public void loadWorkshops(){
+		WorkshopzMapper mapper = new WorkshopzMapper();
+	}
 }

@@ -53,8 +53,4 @@ public class SplashScreenActivity extends BaseActivity {
 		mapper.find(params);
 	}
 	
-	public void loadWorkshops(){
-		
-	}
-	
 }
