@@ -35,12 +35,19 @@ public class SplashScreenActivity extends BaseActivity {
 			
 			@Override
 			public void onSuccess(ArrayList<BaseEntity> obj) {
-				// TODO Auto-generated method stub
+				if(obj.size() > 0){
+					System.out.println("auth");
+					// user is auth
+				} else {
+					System.out.println("not auth");
+					// not auth
+				}
 			}
 			
 			@Override
 			public void onError(Error err) {
-				// TODO Auto-generated method stub
+				// not auth
+				System.out.println("error");
 			}
 		});
 		HashMap<String, String> params = new HashMap<String, String>();
