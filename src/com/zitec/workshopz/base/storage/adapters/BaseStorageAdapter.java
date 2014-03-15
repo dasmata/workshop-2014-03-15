@@ -5,23 +5,24 @@ import java.util.HashMap;
 
 import com.zitec.workshopz.base.BaseEntity;
 import com.zitec.workshopz.base.BaseStorageMapper;
+import com.zitec.workshopz.base.storage.mapper.BaseMapper;
 
 import android.content.Context;
 
 public abstract class BaseStorageAdapter {
 
 	protected Context context;
-	protected BaseStorageMapper mapper;
+	protected BaseMapper mapper;
 	
 	public BaseStorageAdapter(Context ctx){
 		this.context = ctx;
 	}
 	
-	public void setStorageMapper(BaseStorageMapper mapper){
-		this.mapper = mapper;
+	public void setStorageMapper(BaseMapper baseMapper){
+		this.mapper = baseMapper;
 	}
 	
-	public BaseStorageMapper getStorageMapper(){
+	public BaseMapper getStorageMapper(){
 		return this.mapper;
 	}
 	

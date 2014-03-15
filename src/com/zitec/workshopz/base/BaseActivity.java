@@ -1,17 +1,11 @@
 package com.zitec.workshopz.base;
 
-import java.util.ArrayList;
-
-import com.zitec.workshopz.R;
-import com.zitec.workshopz.base.storage.Error;
-import com.zitec.workshopz.user.entities.User;
-import com.zitec.workshopz.utils.NetworkManagerHelper;
-
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
+
+import com.zitec.workshopz.base.storage.Error;
+import com.zitec.workshopz.user.entities.User;
 
 public class BaseActivity extends FragmentActivity {
 

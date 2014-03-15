@@ -11,6 +11,7 @@ public abstract class BaseMapper<T> {
 	
 	public void setAdapter(BaseStorageAdapter adapter){
 		this.adapter = adapter;
+		this.adapter.setStorageMapper(this);
 	}
 	
 	public void setListener(EntityResponseListener listener){
