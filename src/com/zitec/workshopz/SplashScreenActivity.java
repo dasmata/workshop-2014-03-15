@@ -3,6 +3,7 @@ import android.os.Bundle;
 
 import com.zitec.workshopz.R;
 import com.zitec.workshopz.base.BaseActivity;
+import com.zitec.workshopz.base.BaseView;
 
 
 public class SplashScreenActivity extends BaseActivity {
@@ -10,7 +11,8 @@ public class SplashScreenActivity extends BaseActivity {
 	@Override
 	public void onCreate(Bundle aa){
 		super.onCreate(aa);
-		this.setContentView(R.layout.splashscreen_activity);
+		BaseView view = new SplashScreenView(this);
+		view.initView();
 	}
 	
 }

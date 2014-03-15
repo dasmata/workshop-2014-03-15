@@ -12,7 +12,7 @@ public class SplashScreenView extends BaseView {
 	
 	@Override
 	public void initView() {
-
+		this.act.setContentView(R.layout.splashscreen_activity);
 
 	}
 
