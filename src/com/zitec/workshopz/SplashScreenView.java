@@ -18,7 +18,6 @@ public class SplashScreenView extends BaseView {
 
 	@Override
 	public void setActions() {
-		// TODO Auto-generated method stub
 
 	}
 

@@ -13,6 +13,17 @@ public class SplashScreenActivity extends BaseActivity {
 		super.onCreate(aa);
 		BaseView view = new SplashScreenView(this);
 		view.initView();
+		this.checkIdentity();
 	}
 	
+	public void checkIdentity(){
+		if(BaseActivity.identity != null){
+			this.loadWorkshops();
+			return;
+		}
+	}
+	
+	public void loadWorkshops(){
+		
+	}
 }
