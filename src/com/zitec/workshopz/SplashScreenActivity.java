@@ -1,5 +1,6 @@
 package com.zitec.workshopz;
 import android.os.Bundle;
+import android.os.UserManager;
 
 import com.zitec.workshopz.R;
 import com.zitec.workshopz.base.BaseActivity;
@@ -21,7 +22,7 @@ public class SplashScreenActivity extends BaseActivity {
 			this.loadWorkshops();
 			return;
 		}
-		
+		UserMapper mapper = new UserMapper();
 		
 	}
 	

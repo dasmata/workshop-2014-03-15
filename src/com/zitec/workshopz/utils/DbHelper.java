@@ -2,7 +2,6 @@ package com.zitec.workshopz.utils;
 
 import java.io.IOException;
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
