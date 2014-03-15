@@ -36,8 +36,7 @@ public class SplashScreenActivity extends BaseActivity {
 			@Override
 			public void onSuccess(ArrayList<BaseEntity> obj) {
 				if(obj.size() > 0){
-					System.out.println("auth");
-					// user is auth
+					this.loadWorkshops();
 				} else {
 					System.out.println("not auth");
 					// not auth
