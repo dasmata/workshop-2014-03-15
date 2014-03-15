@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="5dp"
+    android:paddingLeft="5dp"
+    android:orientation="vertical" >
+    
+
+    <TextView
+           android:id="@+id/workshopName"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Name"
+           android:textSize="30dp"
+        />
+    <TextView
+           android:id="@+id/workshopTheme"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="android"
+           android:textSize="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:text="@string/date_label"
+        android:textSize="15dp"
+        />
+    <TextView
+        android:id="@+id/workshopDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:textSize="15dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="@string/speakers_label" 
+        />
+    <LinearLayout
+        android:id="@+id/workshopSpeakers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="top|left"
+        ></LinearLayout>
+</LinearLayout>
