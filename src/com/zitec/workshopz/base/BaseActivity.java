@@ -113,7 +113,7 @@ public class BaseActivity extends FragmentActivity {
 			}
 			mapper.getAll();
 		} else {
-			BaseActivity.this.setContentView(R.layout.activity_splash_screen);
+			BaseActivity.this.setContentView(R.layout.splashscreen_activity);
 			BaseActivity.this.showGenericError(BaseActivity.this, new Error(BaseActivity.this.getResources().getString(R.string.network_error)));
 		}
 	}
