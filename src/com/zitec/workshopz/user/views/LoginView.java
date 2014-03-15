@@ -65,7 +65,7 @@ public class LoginView extends BaseView {
 		values.append(R.id.username, this.username.getText().toString());
 		values.append(R.id.password, this.password.getText().toString());
 		if(this.act.validateLogin(values)){
-			this.act.login(values);
+			this.act.login(this.username.getText().toString(),this.password.getText().toString());
 		} else {
 			this.showErrors();
 		}

@@ -18,15 +18,17 @@ public class LoginActivity extends BaseActivity {
 		this.view = new LoginView(this);
 		this.view.initView();
 		this.view.setActions();
+		this.errors = new SparseArray<String>();
 	}
 	
 	public boolean validateLogin(SparseArray<String> values){
 		boolean result = true;
 		NotEmpty validator = new NotEmpty();
 		int nr = values.size();
+		this.errors.clear();
 		for(int i = 0; i < nr; i++){
 			int key = values.keyAt(i);
-			if(validator.validate(values.valueAt(i))){
+			if(!validator.validate(values.valueAt(i))){
 				result = false;
 				this.errors.put(key, this.view.getEmptyError(key));
 			}
@@ -36,5 +38,9 @@ public class LoginActivity extends BaseActivity {
 	
 	public SparseArray<String> getErrors(){
 		return this.errors;
+	}
+	
+	public void login(String username, String password){
+		
 	}
 }
