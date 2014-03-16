@@ -2,6 +2,7 @@ package com.zitec.workshopz;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 
 import com.zitec.workshopz.base.BaseActivity;
@@ -11,6 +12,7 @@ import com.zitec.workshopz.base.EntityResponseListener;
 import com.zitec.workshopz.base.storage.Error;
 import com.zitec.workshopz.user.storage.adapters.UserDbAdapter;
 import com.zitec.workshopz.user.storage.mappers.UserMapper;
+import com.zitec.workshopz.utils.NetworkManagerHelper;
 
 
 public class SplashScreenActivity extends BaseActivity {
@@ -26,31 +28,41 @@ public class SplashScreenActivity extends BaseActivity {
 	public void checkIdentity(){
 		if(BaseActivity.identity != null){
 			this.loadWorkshops();
-			return;
 		}
 		UserMapper mapper = new UserMapper();
-		UserDbAdapter adapter= new UserDbAdapter(this);
-		mapper.setAdapter(adapter);
-		mapper.setListener(new EntityResponseListener() {
-			
-			@Override
-			public void onSuccess(ArrayList<BaseEntity> obj) {
-				if(obj.size() > 0){
-					SplashScreenActivity.this.loadWorkshops();
-				} else {
-					SplashScreenActivity.this.initLoginActivity();
+		try {
+			mapper.setAdapter(new UserDbAdapter(this));
+			mapper.setListener(new EntityResponseListener() {
+				
+				@Override
+				public void onSuccess(ArrayList<BaseEntity> obj) {
+					if(obj == null || obj.size() == 0){
+						if(!NetworkManagerHelper.isNetworkAvailable(SplashScreenActivity.this)){
+							SplashScreenActivity.this.showGenericError(SplashScreenActivity.this, new Error(SplashScreenActivity.this.getResources().getString(R.string.network_error)));
+							return;
+						}
+						SplashScreenActivity.this.startLoginActivity();
+					} else {
+						SplashScreenActivity.this.loadWorkshops();
+					}
+				}
+				
+				@Override
+				public void onError(Error err) {
+					if(!NetworkManagerHelper.isNetworkAvailable(SplashScreenActivity.this)){
+						SplashScreenActivity.this.showGenericError(SplashScreenActivity.this, new Error(SplashScreenActivity.this.getResources().getString(R.string.network_error)));
+						return;
+					}
+					SplashScreenActivity.this.startLoginActivity();
 					SplashScreenActivity.this.finish();
 				}
-			}
-			
-			@Override
-			public void onError(Error err) {
-				SplashScreenActivity.this.initLoginActivity();
-			}
-		});
-		HashMap<String, String> params = new HashMap<String, String>();
-		params.put("current_identity", "true");
-		mapper.find(params);
+			});
+			HashMap<String, String> params = new HashMap<String, String>();
+			params.put("current_identity", "true");
+			mapper.find(params);
+		} catch (NameNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

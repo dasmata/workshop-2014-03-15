@@ -29,7 +29,7 @@ public class WorkshopzActivity extends BaseActivity implements WorkshopClickList
         }
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fragmentContainer, this.listFragment).commit();
-        this.startUpdateService();
+//        this.startUpdateService();
     }
 
 	@Override
