@@ -46,6 +46,27 @@ public class UserWSAdapter extends BaseWSStorageAdapter{
 		this.queue.add(req);
 	}
 
+	public void save(HashMap<String, String> data){
+		String url = this.getBaseUrl() + "/" + this.methodName;
+		final HashMap<String, String> userParams = data;
+		Log.d("Volley", url);
+		JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, null, this, this){
+			@Override
+		    public HashMap<String, String> getParams() {
+				return userParams;
+			}
+			
+			@Override
+			public HashMap<String, String> getHeaders(){
+				HashMap<String, String> params = new HashMap<String, String>();
+				params.put("Content-Type", "application/json");
+				params.put("Accept", "application/json");
+				return params;
+			}
+		};
+		this.queue.add(req);
+	}
+	
 //	@Override
 //	public String getBaseUrl(){
 //		String url = super.getBaseUrl();

@@ -1,10 +1,13 @@
 package com.zitec.workshopz.user.activities;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.util.SparseArray;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.zitec.workshopz.R;
 import com.zitec.workshopz.base.BaseActivity;
@@ -33,7 +36,7 @@ public class LoginActivity extends BaseActivity {
 	
 	public boolean validateLogin(SparseArray<String> values){
 		boolean result = true;
-		NotEmpty validator = new NotEmpty();
+		NotEmpty validator = new NotEmpty(this);
 		int nr = values.size();
 		this.errors.clear();
 		for(int i = 0; i < nr; i++){
@@ -65,9 +68,13 @@ public class LoginActivity extends BaseActivity {
 				}
 				User usr = (User) obj.get(0);
 				BaseActivity.identity = usr;
-				mapper.setAdapter(new UserDbAdapter(LoginActivity.this));
-				usr.setCurrentIdentity("true");
-				mapper.save(usr);
+				try {
+					mapper.setAdapter(new UserDbAdapter(LoginActivity.this));
+					usr.setCurrentIdentity("true");
+					mapper.save(usr);
+				} catch (NameNotFoundException e) {
+					e.printStackTrace();
+				}
 				LoginActivity.this.loadWorkshops();
 			}
 			
@@ -79,15 +86,30 @@ public class LoginActivity extends BaseActivity {
 			}
 		});
 		mapper.getEntity(username, password);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	}
+	
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.login_menu, menu);
+	    return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+	    switch (item.getItemId()) {
+	        case R.id.registerMenuItem:
+//	        	gaHelper.event(GoogleAnalitycsHelper.CATEGORY_UI, "BTN_LOGOUT", "", (long) 0);
+	        	this.showRegisterDialog(null);
+	        	return true;
+	        case R.id.recoverMenuItem:
+//	        	gaHelper.event(GoogleAnalitycsHelper.CATEGORY_UI, "BTN_LOGIN", "", (long) 0);
+	        	this.showChangePasswordDialog(null);
+	        	return true;
+	        default:
+	        	return super.onOptionsItemSelected(item);
+	    }
 	}
 }

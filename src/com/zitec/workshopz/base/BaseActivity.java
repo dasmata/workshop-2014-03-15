@@ -5,13 +5,19 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.widget.Toast;
 
 import com.zitec.workshopz.R;
 import com.zitec.workshopz.base.storage.Error;
 import com.zitec.workshopz.user.activities.LoginActivity;
 import com.zitec.workshopz.user.entities.User;
+import com.zitec.workshopz.user.fragments.RegisterDialogFragment;
 import com.zitec.workshopz.utils.NetworkManagerHelper;
 import com.zitec.workshopz.workshopz.activities.WorkshopzActivity;
 import com.zitec.workshopz.workshopz.entities.Workshop;
@@ -23,7 +29,7 @@ import com.zitec.workshopz.workshopz.storage.mappers.WorkshopzMapper;
 public class BaseActivity extends FragmentActivity {
 
 	protected static Boolean ACTIVITY_NETWORK_ERROR;
-	protected static User identity;
+	public static User identity;
 	protected boolean networkAvail;
 	protected boolean workshopsFromDb;
 	
@@ -34,6 +40,11 @@ public class BaseActivity extends FragmentActivity {
 	
 	public void showGenericError(Context ctx, Error err){
 		Toast tst = Toast.makeText(ctx, err.getMessage(), Toast.LENGTH_LONG);
+		tst.show();
+	}
+	
+	public void showGenericError(Error err){
+		Toast tst = Toast.makeText(this, err.getMessage(), Toast.LENGTH_LONG);
 		tst.show();
 	}
 	
@@ -99,6 +110,30 @@ public class BaseActivity extends FragmentActivity {
 			}
 		});
 		mapper.getAll();
+	}
+	
+	public void showRegisterDialog(Bundle extra){
+		//get fragment manager
+    	FragmentManager manager = this.getSupportFragmentManager();
+    	//begin transation
+        FragmentTransaction ft = manager.beginTransaction();
+        //search for existing dialog fragment
+        Fragment prev = manager.findFragmentByTag("register");
+        if (prev != null) {
+        	//if it exists, remove the fragment
+            ft.remove(prev);
+        }
+        //clear the backstack
+        ft.addToBackStack(null); 
+
+        // Create and show the dialog.
+        DialogFragment newFragment = new RegisterDialogFragment();
+        newFragment.show(ft, "register");
+        //BAM motherfucker! commit is called by show
+	}
+
+	public void showChangePasswordDialog(Bundle extra){
+
 	}
 	
 	public void handleLoadError(WorkshopzMapper mapper){

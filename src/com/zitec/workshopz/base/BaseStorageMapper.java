@@ -52,6 +52,10 @@ public abstract class BaseStorageMapper {
 		this.adapter.save(this.dehydrate(obj));
 	}
 	
+	public void save(HashMap<String, String> obj){
+		this.adapter.save(obj);
+	}
+	
 	public void find(HashMap<String, String> params){
 		this.adapter.find(params);
 	}
