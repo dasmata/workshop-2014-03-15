@@ -1,7 +1,9 @@
 package com.zitec.workshopz.user.activities;
 
 import java.util.ArrayList;
+
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.util.SparseArray;
 
@@ -12,6 +14,7 @@ import com.zitec.workshopz.base.EntityResponseListener;
 import com.zitec.workshopz.base.storage.Error;
 import com.zitec.workshopz.base.validators.NotEmpty;
 import com.zitec.workshopz.user.entities.User;
+import com.zitec.workshopz.user.fragments.CreateAccountFragment;
 import com.zitec.workshopz.user.storage.adapters.UserDbAdapter;
 import com.zitec.workshopz.user.storage.adapters.UserWSAdapter;
 import com.zitec.workshopz.user.storage.mappers.UserMapper;
@@ -84,5 +87,9 @@ public class LoginActivity extends BaseActivity {
 	public void showCreateAccountDialog() {
 		// TODO Auto-generated method stub
 		Log.v("blah", "blah blah");
+	    FragmentManager fm = getSupportFragmentManager();
+	    CreateAccountFragment createAccount = new CreateAccountFragment();
+	    createAccount.show(fm, "fragment_create_account");
+	  
 	}
 }
