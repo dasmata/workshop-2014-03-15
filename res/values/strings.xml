@@ -14,7 +14,7 @@
     <string name="speakers_label">Speakers: </string>
     <string name="syncdb_service_name">workshopz syncronizer</string>
     
-    
+    <string name="create_account_label">Create Account</string>
     
     <string name="ws_base_url">http://workshopz.apache.dev54.zitec.ro</string>
     

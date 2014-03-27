@@ -1,9 +1,8 @@
 package com.zitec.workshopz.user.activities;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseArray;
 
 import com.zitec.workshopz.R;
@@ -80,14 +79,10 @@ public class LoginActivity extends BaseActivity {
 		});
 		mapper.getEntity(username, password);
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	}
+
+	public void showCreateAccountDialog() {
+		// TODO Auto-generated method stub
+		Log.v("blah", "blah blah");
 	}
 }

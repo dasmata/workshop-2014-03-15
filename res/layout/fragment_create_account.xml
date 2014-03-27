@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/create_account"
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:layout_gravity="center" android:orientation="vertical"  >
+
+      
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"  android:layout_height="wrap_content" 
+        android:inputType="text"
+        android:imeOptions="actionDone" />
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"  android:layout_height="wrap_content" 
+        android:inputType="textPassword"
+        android:imeOptions="actionNext" />
+    
+    <EditText
+        android:id="@+id/password_confirm"
+        android:layout_width="match_parent"  android:layout_height="wrap_content" 
+        android:inputType="textPassword"
+        android:imeOptions="actionDone" />
+        
+</LinearLayout>
