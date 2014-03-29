@@ -22,7 +22,7 @@ public class UserWSAdapter extends BaseWSStorageAdapter{
 	}
 
 	public void getEntity(String username, String password){
-		String url = this.getBaseUrl() + "/" + this.methodName + "?username="+username+"&password="+password;
+		String url = this.getUrl() + "?username="+username+"&password="+password;
 		Log.d("Volley", url);
 		final String usr = username;
 		final String pass = password;
@@ -37,11 +37,29 @@ public class UserWSAdapter extends BaseWSStorageAdapter{
 			
 			@Override
 			public HashMap<String, String> getHeaders(){
-				HashMap<String, String> params = new HashMap<String, String>();
-				params.put("Content-Type", "application/json");
-				params.put("Accept", "application/json");
-				return params;
+				return UserWSAdapter.this.getHeaders();
 			}
+		};
+		this.queue.add(req);
+	}
+	
+
+	protected String getUrl() {
+		return this.getBaseUrl() + "/" + this.methodName;
+	}
+	
+	
+	public void save(HashMap<String, String> data) {
+		String url = this.getUrl();
+		final HashMap<String, String> request_data = data;
+		Log.d("Volley", url);
+		
+		JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, null, this, this) {
+			@Override
+		    public HashMap<String, String> getParams() {
+				Log.d("Request Data", request_data.toString());
+				return request_data;
+			}			
 		};
 		this.queue.add(req);
 	}
@@ -55,6 +73,7 @@ public class UserWSAdapter extends BaseWSStorageAdapter{
 	
 	@Override
 	public void onResponse(JSONObject response) {
+		Log.d("REG", response.toString());
 		HashMap<String, String> data = new HashMap<String, String>();
 		try {
 			data.put("email", response.getString("email"));

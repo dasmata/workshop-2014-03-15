@@ -10,12 +10,17 @@
     <string name="empty_username_error">Username cannot be empty</string>
     <string name="empty_password_error">Password cannot be empty</string>
     <string name="network_error">Network error</string>
-        <string name="date_label">Date: </string>
+    <string name="date_label">Date: </string>
     <string name="speakers_label">Speakers: </string>
     <string name="syncdb_service_name">workshopz syncronizer</string>
     
     <string name="create_account_label">Create Account</string>
+    <string name="name_hint">Name</string>
+    <string name="email_hint">Email</string>
+    <string name="position_hint">Position</string>
+    <string name="phone_hint">Phone Number</string>
+    <string name="password_hint">Password</string>
+    <string name="confirm_password_hint">Confirm Password</string>
     
     <string name="ws_base_url">http://workshopz.apache.dev54.zitec.ro</string>
-    
 </resources>

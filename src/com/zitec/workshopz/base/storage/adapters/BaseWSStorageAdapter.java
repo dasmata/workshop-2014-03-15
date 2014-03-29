@@ -57,4 +57,16 @@ public class BaseWSStorageAdapter extends BaseStorageAdapter implements Listener
 	public void onResponse(JSONObject serverResponse) {
 
 	}
+	
+	/**
+	 * Get the request headers
+	 * @return
+	 */
+	protected HashMap<String, String> getHeaders() {
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put("Content-Type", "application/json");
+		params.put("Accept", "application/json");
+		return params;
+	}
+
 }

@@ -52,6 +52,27 @@ public class LoginActivity extends BaseActivity {
 		return this.errors;
 	}
 	
+	public void createAccount(User user) {
+		final UserMapper mapper = new UserMapper();
+		mapper.setAdapter(new UserWSAdapter(this));
+		mapper.setListener(new EntityResponseListener() {
+			@Override
+			public void onSuccess(ArrayList<BaseEntity> obj) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onError(Error err) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		Log.w("REG", "Submit via Volley");
+		mapper.save(user);
+		
+	}
+	
 	public void login(String username, String password){
 		final UserMapper mapper = new UserMapper();
 		mapper.setAdapter(new UserWSAdapter(this));
@@ -86,9 +107,9 @@ public class LoginActivity extends BaseActivity {
 
 	public void showCreateAccountDialog() {
 		// TODO Auto-generated method stub
-		Log.v("blah", "blah blah");
 	    FragmentManager fm = getSupportFragmentManager();
 	    CreateAccountFragment createAccount = new CreateAccountFragment();
+	    createAccount.setActivity(this);
 	    createAccount.show(fm, "fragment_create_account");
 	  
 	}
