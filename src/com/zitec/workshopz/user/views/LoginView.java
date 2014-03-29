@@ -1,7 +1,6 @@
 package com.zitec.workshopz.user.views;
 
 
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.KeyEvent;
 import android.view.View;
@@ -21,6 +20,7 @@ public class LoginView extends BaseView {
 	EditText username;
 	EditText password;
 	Button submit;
+	TextView register;
 	SparseArray<String> errors;
 
 	
@@ -37,6 +37,7 @@ public class LoginView extends BaseView {
 		this.username = (EditText)this.act.findViewById(R.id.username);
 		this.password = (EditText)this.act.findViewById(R.id.password);
 		this.submit = (Button)this.act.findViewById(R.id.submit);
+		this.register = (TextView)this.act.findViewById(R.id.registerLabel);
 	}
 
 	@Override
@@ -56,6 +57,14 @@ public class LoginView extends BaseView {
 				}
 				LoginView.this.submitLogin();
 				return false;
+			}
+		});
+		this.register.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v)
+			{
+				LoginView.this.act.register();
 			}
 		});
 	}

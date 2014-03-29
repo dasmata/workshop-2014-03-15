@@ -1,7 +1,6 @@
 package com.zitec.workshopz.user.activities;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import android.os.Bundle;
 import android.util.SparseArray;
@@ -13,6 +12,7 @@ import com.zitec.workshopz.base.EntityResponseListener;
 import com.zitec.workshopz.base.storage.Error;
 import com.zitec.workshopz.base.validators.NotEmpty;
 import com.zitec.workshopz.user.entities.User;
+import com.zitec.workshopz.user.fragments.RegisterDialog;
 import com.zitec.workshopz.user.storage.adapters.UserDbAdapter;
 import com.zitec.workshopz.user.storage.adapters.UserWSAdapter;
 import com.zitec.workshopz.user.storage.mappers.UserMapper;
@@ -50,6 +50,36 @@ public class LoginActivity extends BaseActivity {
 		return this.errors;
 	}
 	
+	public void register()
+	{
+		RegisterDialog register = new RegisterDialog();
+		register.show(getSupportFragmentManager(), "register");
+	}
+	
+	public void register(User newUser)
+	{
+		final UserMapper mapper = new UserMapper();
+		final User user = newUser;
+		mapper.setAdapter(new UserWSAdapter(this));
+		mapper.setListener(new EntityResponseListener() {
+			
+			@Override
+			public void onSuccess(ArrayList<BaseEntity> obj)
+			{
+				LoginActivity.this.login(user.getEmail(), user.getPassword());
+			}
+			
+			@Override
+			public void onError(Error err)
+			{
+				LoginActivity.this.showGenericError(
+						LoginActivity.this,
+						err);
+			}
+		});
+		mapper.save(newUser);
+	}
+	
 	public void login(String username, String password){
 		final UserMapper mapper = new UserMapper();
 		mapper.setAdapter(new UserWSAdapter(this));
@@ -65,14 +95,32 @@ public class LoginActivity extends BaseActivity {
 				}
 				User usr = (User) obj.get(0);
 				BaseActivity.identity = usr;
-				mapper.setAdapter(new UserDbAdapter(LoginActivity.this));
 				usr.setCurrentIdentity("true");
+
+				mapper.setAdapter(new UserDbAdapter(LoginActivity.this));
+				mapper.setListener(new EntityResponseListener() {
+					
+					@Override
+					public void onSuccess(ArrayList<BaseEntity> obj)
+					{
+						LoginActivity.this.loadWorkshops();
+					}
+					
+					@Override
+					public void onError(Error err)
+					{
+						LoginActivity.this.showGenericError(
+								LoginActivity.this,
+								err);
+					}
+				});
+				
 				mapper.save(usr);
-				LoginActivity.this.loadWorkshops();
 			}
 			
 			@Override
-			public void onError(Error err) {
+			public void onError(Error err)
+			{
 				LoginActivity.this.showGenericError(
 						LoginActivity.this,
 						err);

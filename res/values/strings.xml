@@ -14,6 +14,7 @@
     <string name="speakers_label">Speakers: </string>
     <string name="syncdb_service_name">workshopz syncronizer</string>
     
+    <string name="register_label">or Register</string>
     
     
     <string name="ws_base_url">http://workshopz.apache.dev54.zitec.ro</string>

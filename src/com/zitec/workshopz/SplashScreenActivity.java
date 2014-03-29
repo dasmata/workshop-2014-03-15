@@ -2,7 +2,6 @@ package com.zitec.workshopz;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 
 import com.zitec.workshopz.base.BaseActivity;
@@ -30,39 +29,35 @@ public class SplashScreenActivity extends BaseActivity {
 			this.loadWorkshops();
 		}
 		UserMapper mapper = new UserMapper();
-		try {
-			mapper.setAdapter(new UserDbAdapter(this));
-			mapper.setListener(new EntityResponseListener() {
-				
-				@Override
-				public void onSuccess(ArrayList<BaseEntity> obj) {
-					if(obj == null || obj.size() == 0){
-						if(!NetworkManagerHelper.isNetworkAvailable(SplashScreenActivity.this)){
-							SplashScreenActivity.this.showGenericError(SplashScreenActivity.this, new Error(SplashScreenActivity.this.getResources().getString(R.string.network_error)));
-							return;
-						}
-						SplashScreenActivity.this.startLoginActivity();
-					} else {
-						SplashScreenActivity.this.loadWorkshops();
-					}
-				}
-				
-				@Override
-				public void onError(Error err) {
+		mapper.setAdapter(new UserDbAdapter(this));
+		mapper.setListener(new EntityResponseListener() {
+			
+			@Override
+			public void onSuccess(ArrayList<BaseEntity> obj) {
+				if(obj == null || obj.size() == 0){
 					if(!NetworkManagerHelper.isNetworkAvailable(SplashScreenActivity.this)){
 						SplashScreenActivity.this.showGenericError(SplashScreenActivity.this, new Error(SplashScreenActivity.this.getResources().getString(R.string.network_error)));
 						return;
 					}
 					SplashScreenActivity.this.startLoginActivity();
-					SplashScreenActivity.this.finish();
+				} else {
+					SplashScreenActivity.this.loadWorkshops();
 				}
-			});
-			HashMap<String, String> params = new HashMap<String, String>();
-			params.put("current_identity", "true");
-			mapper.find(params);
-		} catch (NameNotFoundException e) {
-			e.printStackTrace();
-		}
+			}
+			
+			@Override
+			public void onError(Error err) {
+				if(!NetworkManagerHelper.isNetworkAvailable(SplashScreenActivity.this)){
+					SplashScreenActivity.this.showGenericError(SplashScreenActivity.this, new Error(SplashScreenActivity.this.getResources().getString(R.string.network_error)));
+					return;
+				}
+				SplashScreenActivity.this.startLoginActivity();
+				SplashScreenActivity.this.finish();
+			}
+		});
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put("current_identity", "true");
+		mapper.find(params);
 	}
 	
 }

@@ -40,7 +40,7 @@ public class WorkshopListAdapter extends ArrayAdapter<Workshop> {
 		TextView date = (TextView) elementView.findViewById(R.id.workshopDate);
 		
 		name.setText(this.items.get(position).getName());
-		date.setText(this.items.get(position).getStartDate().toLocaleString());
+		date.setText(this.items.get(position).getStartDate().toString());
 		elementView.setTag(this.items.get(position).getRemoteId());
 		
 		return elementView;

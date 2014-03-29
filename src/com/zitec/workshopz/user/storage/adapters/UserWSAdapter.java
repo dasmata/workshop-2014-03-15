@@ -9,6 +9,9 @@ import android.content.Context;
 import android.util.Log;
 
 import com.android.volley.Request;
+import com.android.volley.Response.ErrorListener;
+import com.android.volley.Response.Listener;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.zitec.workshopz.R;
 import com.zitec.workshopz.base.storage.adapters.BaseWSStorageAdapter;
@@ -43,6 +46,30 @@ public class UserWSAdapter extends BaseWSStorageAdapter{
 				return params;
 			}
 		};
+		this.queue.add(req);
+	}
+	
+	public void save(HashMap<String, String> data)
+	{
+		String url = this.getBaseUrl() + "/" + this.methodName;
+		
+		JSONObject saveData = new JSONObject(data);
+		
+		JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, saveData, new Listener<JSONObject>() {
+
+			@Override
+			public void onResponse(JSONObject response)
+			{
+				UserWSAdapter.this.mapper.onSuccess(new HashMap<String, String>());
+			}
+		}, new ErrorListener() {
+
+			@Override
+			public void onErrorResponse(VolleyError error)
+			{
+				UserWSAdapter.this.mapper.onError("Invalid form data");
+			}
+		});
 		this.queue.add(req);
 	}
 
