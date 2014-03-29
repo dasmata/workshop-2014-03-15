@@ -41,7 +41,7 @@ public class WorkshopDetailView extends BaseView {
 	public void populateLayout(){
 		this.name.setText(this.item.getName());
 		this.theme.setText(this.item.getTheme());
-		String date = this.item.getStartDate().toLocaleString();
+		String date = this.item.getStartDate().toString();
 		this.date.setText(date);
 		this.workshopSpeakers.removeAllViews();
 		this.addSpeakers();

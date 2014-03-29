@@ -18,10 +18,15 @@ public class BaseDbStorageAdapter extends BaseStorageAdapter {
 	protected SQLiteDatabase database;
 	protected String table;
 	
-	public BaseDbStorageAdapter(Context ctx) throws NameNotFoundException {
+	public BaseDbStorageAdapter(Context ctx) {
 		super(ctx);
 		if(BaseDbStorageAdapter.dbHelper == null){
-			BaseDbStorageAdapter.dbHelper = new DbHelper(ctx.getApplicationContext(), null, VersionUtils.getVersionCode(ctx));
+			try {
+				BaseDbStorageAdapter.dbHelper = new DbHelper(ctx.getApplicationContext(), null, VersionUtils.getVersionCode(ctx));
+			} catch (NameNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		this.database = dbHelper.getWritableDatabase();
 	}

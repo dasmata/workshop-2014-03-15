@@ -1,12 +1,10 @@
 package com.zitec.workshopz.base.storage.adapters;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import android.content.Context;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response.ErrorListener;
@@ -14,8 +12,6 @@ import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.zitec.workshopz.R;
-
-import android.content.Context;
 
 public class BaseWSStorageAdapter extends BaseStorageAdapter implements Listener<JSONObject>, ErrorListener{
 

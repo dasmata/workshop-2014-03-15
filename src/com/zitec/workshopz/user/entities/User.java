@@ -11,6 +11,7 @@ public class User extends BaseEntity{
 	protected String phoneNumber;
 	protected String remoteId;
 	protected String currentIdentity;
+	protected String password;
 	
 	
 	public String getEmail() {
@@ -54,5 +55,12 @@ public class User extends BaseEntity{
 	}
 	public void setCurrentIdentity(String currentIdentity) {
 		this.currentIdentity = currentIdentity;
+	}
+	public void setPassword(String string) {
+		this.password = string;
+	}
+	public String getPassword()
+	{
+		return password;
 	}
 }

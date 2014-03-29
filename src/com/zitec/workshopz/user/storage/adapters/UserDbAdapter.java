@@ -8,7 +8,6 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.Cursor;
 
 import com.zitec.workshopz.base.storage.adapters.BaseDbStorageAdapter;
-import com.zitec.workshopz.base.storage.adapters.BaseStorageAdapter;
 import com.zitec.workshopz.utils.DbHelper;
 import com.zitec.workshopz.utils.VersionUtils;
 
@@ -16,9 +15,15 @@ public class UserDbAdapter extends BaseDbStorageAdapter{
 
 	DbHelper database;
 	
-	public UserDbAdapter(Context ctx) throws NameNotFoundException {
+	public UserDbAdapter(Context ctx) {
 		super(ctx);
-		this.database = new DbHelper(ctx, null, VersionUtils.getVersionCode(ctx));
+		try {
+			this.database = new DbHelper(ctx, null, VersionUtils.getVersionCode(ctx));
+		} catch (NameNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.table = "users";
 	}
 	
 	@Override

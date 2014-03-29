@@ -1,12 +1,10 @@
 package com.zitec.workshopz.base.storage.adapters;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.zitec.workshopz.base.BaseEntity;
-import com.zitec.workshopz.base.BaseStorageMapper;
-
 import android.content.Context;
+
+import com.zitec.workshopz.base.BaseStorageMapper;
 
 public abstract class BaseStorageAdapter {
 
