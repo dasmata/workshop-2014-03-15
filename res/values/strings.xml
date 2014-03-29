@@ -21,6 +21,6 @@
     <string name="phone_hint">Phone Number</string>
     <string name="password_hint">Password</string>
     <string name="confirm_password_hint">Confirm Password</string>
-    
+    <string name="registration_successful">Registration OK!</string>
     <string name="ws_base_url">http://workshopz.apache.dev54.zitec.ro</string>
 </resources>

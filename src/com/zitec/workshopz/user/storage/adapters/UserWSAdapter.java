@@ -2,6 +2,10 @@ package com.zitec.workshopz.user.storage.adapters;
 
 import java.util.HashMap;
 
+
+
+
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -9,9 +13,13 @@ import android.content.Context;
 import android.util.Log;
 
 import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.zitec.workshopz.R;
 import com.zitec.workshopz.base.storage.adapters.BaseWSStorageAdapter;
+import com.zitec.workshopz.user.entities.User;
 
 public class UserWSAdapter extends BaseWSStorageAdapter{
 
@@ -32,6 +40,7 @@ public class UserWSAdapter extends BaseWSStorageAdapter{
 				HashMap<String, String> params = new HashMap<String, String>();
 				params.put("username", usr);
 				params.put("password", pass);
+				Log.d("Volley", params.toString());
 				return params;
 			}
 			
@@ -54,14 +63,39 @@ public class UserWSAdapter extends BaseWSStorageAdapter{
 		final HashMap<String, String> request_data = data;
 		Log.d("Volley", url);
 		
-		JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, null, this, this) {
-			@Override
-		    public HashMap<String, String> getParams() {
-				Log.d("Request Data", request_data.toString());
-				return request_data;
-			}			
-		};
-		this.queue.add(req);
+		StringRequest postRequest = new StringRequest(Request.Method.POST, url, 
+			    new Response.Listener<String>() 
+			    {
+			        @Override
+			        public void onResponse(String response) {
+			        	JSONObject json;
+						try {
+							json = new JSONObject(response);
+				        	request_data.put("remote_id", json.getString("id"));
+				        	Log.d("Response", request_data.toString());
+				            UserWSAdapter.this.mapper.onSuccess(request_data);
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							UserWSAdapter.this.mapper.onError(UserWSAdapter.this.context.getResources().getString(R.string.network_error));
+						}
+			        }
+			    }, 
+			    new Response.ErrorListener() 
+			    {
+			         @Override
+			       public void onErrorResponse(VolleyError error) {
+			             // error
+			        	 UserWSAdapter.this.mapper.onError(UserWSAdapter.this.context.getResources().getString(R.string.network_error));
+			       }
+			    }
+			) {     
+			    @Override
+			    protected HashMap<String, String> getParams() 
+			    {  
+			      return request_data;  
+			    }
+			};
+		this.queue.add(postRequest);
 	}
 
 //	@Override

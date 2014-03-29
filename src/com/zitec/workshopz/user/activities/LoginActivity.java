@@ -58,14 +58,26 @@ public class LoginActivity extends BaseActivity {
 		mapper.setListener(new EntityResponseListener() {
 			@Override
 			public void onSuccess(ArrayList<BaseEntity> obj) {
-				// TODO Auto-generated method stub
+				if(obj.size() < 1){
+					LoginActivity.this.showGenericError(
+							LoginActivity.this,
+							new Error(LoginActivity.this.getResources().getString(R.string.network_error)));
+					return;
+				}
+				User usr = (User) obj.get(0);
+				BaseActivity.identity = usr;
+				mapper.setAdapter(new UserDbAdapter(LoginActivity.this));
+				usr.setCurrentIdentity("true");
+				mapper.save(usr);
+				LoginActivity.this.loadWorkshops();
 				
 			}
 			
 			@Override
 			public void onError(Error err) {
-				// TODO Auto-generated method stub
-				
+				LoginActivity.this.showGenericError(
+						LoginActivity.this,
+						err);
 			}
 		});
 		Log.w("REG", "Submit via Volley");
@@ -91,6 +103,8 @@ public class LoginActivity extends BaseActivity {
 				mapper.setAdapter(new UserDbAdapter(LoginActivity.this));
 				usr.setCurrentIdentity("true");
 				mapper.save(usr);
+				LoginActivity.this.showGenericError(LoginActivity.this, 
+						new Error(LoginActivity.this.getResources().getString(R.string.registration_successful)));
 				LoginActivity.this.loadWorkshops();
 			}
 			
