@@ -45,7 +45,7 @@ public class BaseActivity extends FragmentActivity {
 		return BaseActivity.identity;
 	}
 	
-	public void initLoginActivity(){
+	public void startLoginActivity(){
 		Intent i = new Intent(this, LoginActivity.class);
 		this.startActivity(i);
 	}
