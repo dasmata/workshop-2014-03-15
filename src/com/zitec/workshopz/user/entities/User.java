@@ -11,7 +11,8 @@ public class User extends BaseEntity{
 	protected String phoneNumber;
 	protected String remoteId;
 	protected String currentIdentity;
-	
+	private String password;
+	private boolean has_password = false;
 	
 	public String getEmail() {
 		return email;
@@ -54,5 +55,17 @@ public class User extends BaseEntity{
 	}
 	public void setCurrentIdentity(String currentIdentity) {
 		this.currentIdentity = currentIdentity;
+	}
+	public void setPassword(String string) {
+		this.password = string;
+		this.has_password = true;
+	}
+	
+	public String getPassword(){
+		return this.password;
+	}
+	public boolean hasPassword() {
+		// TODO Auto-generated method stub
+		return this.has_password ;
 	}
 }

@@ -27,7 +27,15 @@ public class UserMapper extends BaseStorageMapper{
 
 	@Override
 	public HashMap<String, String> dehydrate(BaseEntity data) {
-		// TODO Auto-generated method stub
-		return null;
+		User user = (User) data;
+		HashMap<String, String> values = new HashMap<String, String>();
+		values.put("email", user.getEmail());
+		values.put("name", user.getName());
+		values.put("phone_number", user.getPhoneNumber());
+		values.put("position", user.getPosition());
+		if(user.hasPassword()) {
+			values.put("password", user.getPassword());
+		}
+		return values;
 	}
 }

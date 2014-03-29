@@ -9,4 +9,5 @@ abstract public class BaseValidator {
 	public boolean validate(Integer value) throws Exception{
 		throw new Exception("This method is not implemented");
 	}
+	
 }
