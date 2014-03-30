@@ -28,4 +28,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/submit"
         android:text="@string/login_submit_label"/>
+    
+    <Button 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/register"
+        android:text="@string/login_register_label"/>
+    
 </LinearLayout>

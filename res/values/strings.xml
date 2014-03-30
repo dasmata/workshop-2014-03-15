@@ -10,11 +10,21 @@
     <string name="empty_username_error">Username cannot be empty</string>
     <string name="empty_password_error">Password cannot be empty</string>
     <string name="network_error">Network error</string>
-        <string name="date_label">Date: </string>
+    <string name="date_label">Date: </string>
     <string name="speakers_label">Speakers: </string>
     <string name="syncdb_service_name">workshopz syncronizer</string>
+    <string name="login_register_label">Create an account</string>
     
+    <string name="name_label">Name</string>
+    <string name="email_label">E-mail</string>
+    <string name="phone_label">Phone number</string>
+    <string name="position_label">Position</string>
+    <string name="create_label">Create</string>
+    <string name="cancel_label">Cancel</string>
+    <string name="empty_field_label">Field is empty</string>
     
+    <string name="account_creted">Your account was created. Proceed to login!</string>
+    <string name="account_failed">Your account wasn\'t created. Please try again!</string>
     
     <string name="ws_base_url">http://workshopz.apache.dev54.zitec.ro</string>
     

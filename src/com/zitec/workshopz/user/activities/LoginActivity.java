@@ -3,8 +3,12 @@ package com.zitec.workshopz.user.activities;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import android.app.FragmentManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseArray;
+import android.widget.Toast;
 
 import com.zitec.workshopz.R;
 import com.zitec.workshopz.base.BaseActivity;
@@ -12,6 +16,7 @@ import com.zitec.workshopz.base.BaseEntity;
 import com.zitec.workshopz.base.EntityResponseListener;
 import com.zitec.workshopz.base.storage.Error;
 import com.zitec.workshopz.base.validators.NotEmpty;
+import com.zitec.workshopz.user.dialogs.RegisterDialog;
 import com.zitec.workshopz.user.entities.User;
 import com.zitec.workshopz.user.storage.adapters.UserDbAdapter;
 import com.zitec.workshopz.user.storage.adapters.UserWSAdapter;
@@ -65,7 +70,11 @@ public class LoginActivity extends BaseActivity {
 				}
 				User usr = (User) obj.get(0);
 				BaseActivity.identity = usr;
-				mapper.setAdapter(new UserDbAdapter(LoginActivity.this));
+				try {
+					mapper.setAdapter(new UserDbAdapter(LoginActivity.this));
+				} catch (NameNotFoundException e) {
+					e.printStackTrace();
+				}
 				usr.setCurrentIdentity("true");
 				mapper.save(usr);
 				LoginActivity.this.loadWorkshops();
@@ -79,15 +88,12 @@ public class LoginActivity extends BaseActivity {
 			}
 		});
 		mapper.getEntity(username, password);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	}
+
+	public void showRegisterDialog() {
+		FragmentManager fm = getFragmentManager();
+        RegisterDialog registerDialog = new RegisterDialog();
+        registerDialog.setActivity(this);
+        registerDialog.show(fm, "register_dialog");
 	}
 }
