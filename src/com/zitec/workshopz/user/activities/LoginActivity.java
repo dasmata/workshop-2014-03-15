@@ -70,6 +70,17 @@ public class LoginActivity extends BaseActivity {
 				BaseActivity.identity = usr;
 				try {
 					mapper.setAdapter(new UserDbAdapter(LoginActivity.this));
+					mapper.setListener(new EntityResponseListener() {
+
+						@Override
+						public void onSuccess(ArrayList<BaseEntity> obj) {
+						}
+
+						@Override
+						public void onError(Error err) {
+						}
+						
+					});
 					usr.setCurrentIdentity("true");
 					mapper.save(usr);
 				} catch (NameNotFoundException e) {
@@ -101,11 +112,9 @@ public class LoginActivity extends BaseActivity {
 	    // Handle item selection
 	    switch (item.getItemId()) {
 	        case R.id.registerMenuItem:
-//	        	gaHelper.event(GoogleAnalitycsHelper.CATEGORY_UI, "BTN_LOGOUT", "", (long) 0);
 	        	this.showRegisterDialog(null);
 	        	return true;
 	        case R.id.recoverMenuItem:
-//	        	gaHelper.event(GoogleAnalitycsHelper.CATEGORY_UI, "BTN_LOGIN", "", (long) 0);
 	        	this.showChangePasswordDialog(null);
 	        	return true;
 	        default:

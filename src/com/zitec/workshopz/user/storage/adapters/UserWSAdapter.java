@@ -16,6 +16,7 @@ import com.zitec.workshopz.base.storage.adapters.BaseWSStorageAdapter;
 public class UserWSAdapter extends BaseWSStorageAdapter{
 
 	String methodName = "users";
+	JSONObject userRegisterParams;
 	
 	public UserWSAdapter(Context ctx) {
 		super(ctx);
@@ -49,12 +50,8 @@ public class UserWSAdapter extends BaseWSStorageAdapter{
 	public void save(HashMap<String, String> data){
 		String url = this.getBaseUrl() + "/" + this.methodName;
 		final HashMap<String, String> userParams = data;
-		Log.d("Volley", url);
-		JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, null, this, this){
-			@Override
-		    public HashMap<String, String> getParams() {
-				return userParams;
-			}
+		this.userRegisterParams = new JSONObject(userParams);
+		JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, this.userRegisterParams, this, this){
 			
 			@Override
 			public HashMap<String, String> getHeaders(){
@@ -78,11 +75,17 @@ public class UserWSAdapter extends BaseWSStorageAdapter{
 	public void onResponse(JSONObject response) {
 		HashMap<String, String> data = new HashMap<String, String>();
 		try {
-			data.put("email", response.getString("email"));
-			data.put("position", response.getString("position"));
-			data.put("remote_id", response.getString("id"));
-			data.put("name", response.getString("name"));
-			data.put("phone_number", response.getString("phone_number"));
+			if(this.userRegisterParams == null){
+				this.userRegisterParams = response;
+			} else {
+				this.userRegisterParams.put("id", response.getString("id"));
+			}
+			
+			data.put("email", this.userRegisterParams.getString("email"));
+			data.put("position", this.userRegisterParams.getString("position"));
+			data.put("remote_id", this.userRegisterParams.getString("id"));
+			data.put("name", this.userRegisterParams.getString("name"));
+			data.put("phone_number", this.userRegisterParams.getString("phone_number"));
 			
 			this.mapper.onSuccess(data);
 		} catch (JSONException e) {

@@ -62,6 +62,18 @@ public class RegisterDialogFragment extends DialogFragment {
 					usr.setCurrentIdentity("true");
 					try {
 						mapper.setAdapter(new UserDbAdapter(act));
+						mapper.setListener(new EntityResponseListener() {
+							
+							@Override
+							public void onSuccess(ArrayList<BaseEntity> obj) {
+								BaseActivity.identity = (User)obj.get(0);
+							}
+							
+							@Override
+							public void onError(Error err) {
+								
+							}
+						});
 						mapper.save(usr);
 					} catch (NameNotFoundException e) {
 						// TODO Auto-generated catch block

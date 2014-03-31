@@ -38,7 +38,9 @@ public class BaseDbStorageAdapter extends BaseStorageAdapter {
 	
 	@Override
 	public void save(HashMap<String, String> data) {
-		
+		if(data == null){
+			return;
+		}
 		if(data.get("id") != null && !"".equals(data.get("id"))){
 			String id = data.get("id");
 			data.remove("id");
